@@ -28,7 +28,7 @@ function leftRotate(string, num) {
 function binaryToHex(string) {
   if (typeof string !== 'string') string = string.toString();
   let decimal = parseInt(string, 2);
-  return decimal.toString(16)
+  return decimal.toString(16);
 }
 
 module.exports = {
