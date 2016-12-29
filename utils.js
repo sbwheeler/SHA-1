@@ -71,6 +71,23 @@ function not(stringA) {
   }).join('');
 }
 
+function binaryAddition(stringA, stringB) {
+  const numA = parseInt(stringA, 2);
+  const numB = parseInt(stringB, 2);
+  const sum = (numA + numB).toString(2);
+  const length = stringA.length;
+
+  return sum.length === length ? '1' + sum : sum;
+}
+
+function truncate(string, length) {
+  while (string.length > length) {
+    string = string.slice(1);
+  }
+
+  return string;
+}
+
 module.exports = {
   charToASCII,
   asciiToBinary,
@@ -81,5 +98,7 @@ module.exports = {
   xOR,
   and,
   or,
-  not
+  not,
+  binaryAddition,
+  truncate
 };

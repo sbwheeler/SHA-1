@@ -145,4 +145,35 @@ describe('Utils module functionality', () => {
       expect(utils.not(stringB)).to.equal('10101010');
     });
   });
+
+  describe('binary addition function', () => {
+    let x = '1010100101111110101101010001000000';
+    let y = '11001010011000101100000111010110';
+    let z = '111';
+
+    it('returns a string', () => {
+      expect(utils.binaryAddition(z, z)).to.be.a('string');
+    });
+
+    it('returns a string that is the binary sum of the two binary input binary strings', () => {
+      expect(utils.binaryAddition(z, z)).to.equal('1110');
+    });
+
+    it('prepends a 1 onto the result if the length of the result is equal to that of the first input', () => {
+      expect(utils.binaryAddition(x, y)).to.equal('11101110000010111011001011000010110');
+    });
+  });
+
+  describe('truncate function', () => {
+    let temp = 'hello world';
+
+    it('returns a string', () => {
+      expect(utils.truncate(temp, 5)).to.be.a('string');
+    });
+
+    it('returns a string truncated from the beginning to equal the specified length', () => {
+      expect(utils.truncate(temp, 8).length).to.equal(8);
+      expect(utils.truncate(temp, 5)).to.equal('world');
+    });
+  });
 });
