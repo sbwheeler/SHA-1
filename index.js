@@ -42,25 +42,44 @@ function sha1(text) {
     //loop for each 16-word chunk that will extend it to be a 'chunk' array of 80 words, using bitwise operations on each
     for (let i = 16; i <= 79; i++) {
       //take four words from that chunk using your current i in the loop
-      let wordA = array[i - 3];
-      let wordB = array[i - 8];
-      let wordC = array[i - 14];
-      let wordD = array[i - 16];
+      const wordA = array[i - 3];
+      const wordB = array[i - 8];
+      const wordC = array[i - 14];
+      const wordD = array[i - 16];
 
       //perform consecutive bitwise operations going through each word
-      let xorA = utils.xOR(wordA, wordB);
-      let xorB = utils.xOR(xorA, wordC);
-      let xorC = utils.xOR(xorB, wordD);
+      const xorA = utils.xOR(wordA, wordB);
+      const xorB = utils.xOR(xorA, wordC);
+      const xorC = utils.xOR(xorB, wordD);
 
       //left rotate by one
-      let leftRotated = utils.leftRotate(xorC, 1);
-      //append to the array
+      const leftRotated = utils.leftRotate(xorC, 1);
+      //append to the array and continue the loop
       array.push(leftRotated);
     }
     return array;
   })
 
-  console.log(words80.length);
+  //initializing to the constants set at the beginning of the function
+  let a = h0;
+  let b = h1;
+  let c = h2;
+  let d = h3;
+  let e = h4;
+
+  for (let i = 0; i < words80.length; i++) {
+    for (let i = 0; i <= 79; i++) {
+      if (i >= 0 && i <= 19) {
+
+      } else if (i >= 20 && i <= 39) {
+
+      } else if (i >= 40 && i <= 59) {
+
+      } else {
+
+      }
+    }
+  }
 
   return words80;
 }
@@ -70,4 +89,4 @@ function sha1(text) {
 
 // console.log(sha1('A Test'));
 // console.log(sha1('hello world'));
-console.log(sha1('LAKSFHLKASFFLKA APodnp DSAMKLASKL cannot shift a number above string length'));
+// console.log(sha1('LAKSFHLKASFFLKA APodnp DSAMKLASKL cannot shift a number above string length'));

@@ -49,6 +49,28 @@ function xOR(stringA, stringB) {
   return xORarray.join('').toString();
 }
 
+function and(stringA, stringB) {
+  let arrayA = stringA.split('').map((letter) => +letter );
+  let arrayB = stringB.split('').map((letter) => +letter );
+  const xORarray = arrayA.map((num, index) => num & arrayB[index]);
+  return xORarray.join('').toString();
+}
+
+function or(stringA, stringB) {
+  let arrayA = stringA.split('').map((letter) => +letter );
+  let arrayB = stringB.split('').map((letter) => +letter );
+  const xORarray = arrayA.map((num, index) => num | arrayB[index]);
+  return xORarray.join('').toString();
+}
+
+function not(stringA) {
+  let array = stringA.split('').map((letter) => letter );
+  return array.map(letter => {
+    if (letter === '1') return '0';
+    return '1';
+  }).join('');
+}
+
 module.exports = {
   charToASCII,
   asciiToBinary,
@@ -56,5 +78,8 @@ module.exports = {
   leftRotate,
   binaryToHex,
   stringSplit,
-  xOR
+  xOR,
+  and,
+  or,
+  not
 };

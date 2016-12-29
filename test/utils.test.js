@@ -115,16 +115,34 @@ describe('Utils module functionality', () => {
     });
   });
 
-  describe('xOR function', () => {
+  describe('bitwise functions', () => {
     const stringA = '10101010';
     const stringB = '01010101';
+
     it('should return a string', () => {
       expect(utils.xOR(stringA, stringB)).to.be.a('string');
+      expect(utils.and(stringA, stringB)).to.be.a('string');
+      expect(utils.or(stringA, stringB)).to.be.a('string');
     });
 
-    it('should return the bitwise XOR result of those two binary strings combined', () => {
+    it('xOr should return the bitwise XOR result of those two binary strings combined for xOR function', () => {
       expect(utils.xOR(stringA, stringB)).to.equal('11111111');
       expect(utils.xOR(stringA, stringA)).to.equal('00000000');
+    });
+
+    it('and should return the bitwise AND result of those two binary strings combined for AND function', () => {
+      expect(utils.and(stringA, stringB)).to.equal('00000000');
+      expect(utils.and(stringA, stringA)).to.equal('10101010');
+    });
+
+    it('or should return the bitwise OR result of those two binary strings combined for OR function', () => {
+      expect(utils.or(stringA, stringB)).to.equal('11111111');
+      expect(utils.or(stringA, stringA)).to.equal('10101010');
+    });
+
+    it('not should return the inverse of the input binary string', () => {
+      expect(utils.not(stringA)).to.equal('01010101');
+      expect(utils.not(stringB)).to.equal('10101010');
     });
   });
 });
