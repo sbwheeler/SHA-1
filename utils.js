@@ -31,10 +31,30 @@ function binaryToHex(string) {
   return decimal.toString(16);
 }
 
+function stringSplit(string, num) {
+  if (string.length % num !== 0) throw new Error('string will not split evenly');
+  let array = [];
+  let prev = 0;
+  for (let i = num; i <= string.length; i += num) {
+    array.push(string.slice(prev, i));
+    prev = i;
+  }
+  return array;
+}
+
+function xOR(stringA, stringB) {
+  let arrayA = stringA.split('').map((letter) => +letter );
+  let arrayB = stringB.split('').map((letter) => +letter );
+  const xORarray = arrayA.map((num, index) => num ^ arrayB[index]);
+  return xORarray.join('').toString();
+}
+
 module.exports = {
   charToASCII,
   asciiToBinary,
   padZero,
   leftRotate,
-  binaryToHex
+  binaryToHex,
+  stringSplit,
+  xOR
 };

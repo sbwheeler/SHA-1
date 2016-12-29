@@ -98,4 +98,33 @@ describe('Utils module functionality', () => {
       expect(utils.binaryToHex(binaryString)).to.equal('61');
     });
   });
+
+  describe('stringSplit function', () => {
+    const stringA = 'hello world';
+    const stringB = 'hello world!';
+    it('should return an array', () => {
+      expect(utils.stringSplit(stringB, 2)).to.be.an('array');
+    });
+
+    it('should split the input string into chunks of the given size', () => {
+      expect(utils.stringSplit(stringB, 2)).to.deep.equal(['he', 'll', 'o ', 'wo', 'rl', 'd!']);
+    });
+
+    it('should throw an error if the input size will not split the string evenly', () => {
+      expect(utils.stringSplit.bind(null, stringA, 2)).to.throw(Error, 'string will not split evenly');
+    });
+  });
+
+  describe('xOR function', () => {
+    const stringA = '10101010';
+    const stringB = '01010101';
+    it('should return a string', () => {
+      expect(utils.xOR(stringA, stringB)).to.be.a('string');
+    });
+
+    it('should return the bitwise XOR result of those two binary strings combined', () => {
+      expect(utils.xOR(stringA, stringB)).to.equal('11111111');
+      expect(utils.xOR(stringA, stringA)).to.equal('00000000');
+    });
+  });
 });
