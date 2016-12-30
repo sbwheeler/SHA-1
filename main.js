@@ -1,4 +1,4 @@
-const sha1 = require('./sha1');
+const sha1 = require('./src/sha1');
 const clc = require('cli-color')
 
 process.stdout.write(clc.white.bold('Input value to be hashed > '));

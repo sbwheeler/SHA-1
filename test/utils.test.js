@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const utils = require('../utils');
+const utils = require('../src/utils');
 
 describe('Utils module functionality', () => {
   const letter = 'a';

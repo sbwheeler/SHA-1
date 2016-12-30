@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const sha1 = require('../index');
+const sha1 = require('../src/sha1');
 
 //tested SHA1 results with https://www.tools4noobs.com/online_php_functions/sha1/ and http://www.metamorphosite.com/one-way-hash-encryption-sha1-data-software
 
