@@ -78,6 +78,7 @@ function binaryAddition(stringA, stringB) {
   const numB = parseInt(stringB, 2);
   let sum = (numA + numB).toString(2);
   const length = stringA.length;
+
   while (sum.length < stringA.length) {
     sum = '0' + sum;
   }

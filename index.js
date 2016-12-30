@@ -18,10 +18,9 @@ function sha1(text) {
   //join the array into a singular string appended with a 1
   let numString = binary8bit.join('') + '1';
 
-  let count = 0;
-  while (numString.length % 512 < 448) {
+  //pad the array with zeros until it is modulo 512 === 448
+  while (numString.length % 512 !== 448) {
     numString += '0';
-    count++;
   }
 
   //append the length of the original 8 bit binary representation of the message to your string, padded with zeros so it is 64 characters in length
@@ -32,6 +31,7 @@ function sha1(text) {
   const paddedBinLength = utils.padZero(binaryLength, 64);
   numString += paddedBinLength;
 
+  //console.log('numstring: ', numString);
   //split that binary string into chunks of 512
   const chunks = utils.stringSplit(numString, 512);
 
@@ -68,7 +68,7 @@ function sha1(text) {
     let b = h1;
     let c = h2;
     let d = h3;
-    let e = h4; //wrong number of loops?????
+    let e = h4;
     for (let j = 0; j < 80; j++) {
       let f;
       let k;
@@ -92,45 +92,22 @@ function sha1(text) {
         k = '10001111000110111011110011011100';
       }
       else {
-        console.log(j, 'HELLO')
-        // console.log('b: ', b);
-        // console.log('c: ', c);
         const BxorC = utils.xOR(b, c);
-        // console.log('bxorc: ', BxorC)
         f = utils.xOR(BxorC, d);
-        // console.log('f: ', f);
         k = '11001010011000101100000111010110';
-        //we are fine through F and L
       }
       const word = words80[i][j];
-      console.log('WORD: ', word) //word is fine
-      console.log('a lrotate: ', utils.leftRotate(a, 5));
-      console.log('f: ', f);
       const tempA = utils.binaryAddition(utils.leftRotate(a, 5), f);
-      console.log('result::: ', tempA)
       const tempB = utils.binaryAddition(tempA, e);
       const tempC = utils.binaryAddition(tempB, k);
-      // console.log('tempC: ', tempC)
-      // console.log('word: ', word);
       let temp = utils.binaryAddition(tempC, word);
-      // console.log('addition: ', temp)
-      //look at word and tempC
 
       temp = utils.truncate(temp, 32);
-      // if (j === 65) {
-      //   temp = '01100110010010111010001110110011';
-      // }
-      console.log('temp: ', temp);
       e = d;
-      console.log('e: ', e); //HITTING SOMETHING ON THE 65TH WORD
       d = c;
-      console.log('d: ', d);
       c = utils.leftRotate(b, 30); //something with this
-      console.log('c: ', c);
       b = a;
-      console.log('b: ', b);
       a = temp;
-      console.log('a: ', a);
     }
 
     h0 = utils.truncate(utils.binaryAddition(h0, a), 32);
@@ -144,7 +121,4 @@ function sha1(text) {
 }
 
 
-
-// console.log(sha1('testing'));
-// console.log(sha1('hello world'));
-console.log(sha1('LAKSFHLKASFFLKA APodnp DSAMKLASKL cannot shift a number above string length'));
+module.exports = sha1;

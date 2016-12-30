@@ -147,9 +147,11 @@ describe('Utils module functionality', () => {
   });
 
   describe('binary addition function', () => {
-    let x = '1010100101111110101101010001000000';
-    let y = '11001010011000101100000111010110';
-    let z = '111';
+    const a = '00000000100100111101110001110010';
+    const b = '01011000001001011101101001110111';
+    const x = '1010100101111110101101010001000000';
+    const y = '11001010011000101100000111010110';
+    const z = '111';
 
     it('returns a string', () => {
       expect(utils.binaryAddition(z, z)).to.be.a('string');
@@ -159,13 +161,14 @@ describe('Utils module functionality', () => {
       expect(utils.binaryAddition(z, z)).to.equal('1110');
     });
 
-    it('prepends a 1 onto the result if the length of the result is equal to that of the first input', () => {
+    it('prepends 0s onto the result if the length of the result is smaller than the length of the input, and a 1 onto the result if/when the length of the result is equal to that of the first input', () => {
       expect(utils.binaryAddition(x, y)).to.equal('11101110000010111011001011000010110');
+      expect(utils.binaryAddition(a, b)).to.equal('101011000101110011011011011101001');
     });
   });
 
   describe('truncate function', () => {
-    let temp = 'hello world';
+    const temp = 'hello world';
 
     it('returns a string', () => {
       expect(utils.truncate(temp, 5)).to.be.a('string');
