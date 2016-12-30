@@ -1,5 +1,4 @@
 const utils = require('./utils');
-//MAKE IT WORK WITH COMMAND LINE
 
 function sha1(text) {
   //constants used later during the hashing function
