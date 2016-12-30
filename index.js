@@ -61,7 +61,6 @@ function sha1(text) {
     return array;
   });
 
-
   //large loop where we use bitwise operations on our initial constants
   for (let i = 0; i < words80.length; i++) {
     //initializing to the constants set at the beginning of the function
@@ -69,8 +68,8 @@ function sha1(text) {
     let b = h1;
     let c = h2;
     let d = h3;
-    let e = h4;
-    for (let j = 0; j <= 79; j++) {
+    let e = h4; //wrong number of loops?????
+    for (let j = 0; j < 80; j++) {
       let f;
       let k;
       if (j < 20) {
@@ -93,22 +92,45 @@ function sha1(text) {
         k = '10001111000110111011110011011100';
       }
       else {
+        console.log(j, 'HELLO')
+        // console.log('b: ', b);
+        // console.log('c: ', c);
         const BxorC = utils.xOR(b, c);
+        // console.log('bxorc: ', BxorC)
         f = utils.xOR(BxorC, d);
+        // console.log('f: ', f);
         k = '11001010011000101100000111010110';
+        //we are fine through F and L
       }
       const word = words80[i][j];
+      console.log('WORD: ', word) //word is fine
+      console.log('a lrotate: ', utils.leftRotate(a, 5));
+      console.log('f: ', f);
       const tempA = utils.binaryAddition(utils.leftRotate(a, 5), f);
+      console.log('result::: ', tempA)
       const tempB = utils.binaryAddition(tempA, e);
       const tempC = utils.binaryAddition(tempB, k);
+      // console.log('tempC: ', tempC)
+      // console.log('word: ', word);
       let temp = utils.binaryAddition(tempC, word);
+      // console.log('addition: ', temp)
+      //look at word and tempC
 
       temp = utils.truncate(temp, 32);
+      // if (j === 65) {
+      //   temp = '01100110010010111010001110110011';
+      // }
+      console.log('temp: ', temp);
       e = d;
+      console.log('e: ', e); //HITTING SOMETHING ON THE 65TH WORD
       d = c;
-      c = utils.leftRotate(b, 30);
+      console.log('d: ', d);
+      c = utils.leftRotate(b, 30); //something with this
+      console.log('c: ', c);
       b = a;
+      console.log('b: ', b);
       a = temp;
+      console.log('a: ', a);
     }
 
     h0 = utils.truncate(utils.binaryAddition(h0, a), 32);
@@ -116,17 +138,13 @@ function sha1(text) {
     h2 = utils.truncate(utils.binaryAddition(h2, c), 32);
     h3 = utils.truncate(utils.binaryAddition(h3, d), 32);
     h4 = utils.truncate(utils.binaryAddition(h4, e), 32);
-
-      console.log('h4: ', h4)
-
   }
-  console.log('outside h4', h4)
   //convert each variable into hexadecimal notation and then concatenate those and return your final hash value
   return [h0, h1, h2, h3, h4].map((string) => utils.binaryToHex(string)).join('');
 }
 
 
 
-console.log(sha1('testing'));
+// console.log(sha1('testing'));
 // console.log(sha1('hello world'));
-// console.log(sha1('LAKSFHLKASFFLKA APodnp DSAMKLASKL cannot shift a number above string length'));
+console.log(sha1('LAKSFHLKASFFLKA APodnp DSAMKLASKL cannot shift a number above string length'));

@@ -19,6 +19,8 @@ function padZero(num, length) {
 }
 
 function leftRotate(string, num) {
+  // console.log('left rotate: ', string)
+  // console.log('rotated: ', string.slice(num) + string.slice(0, num))
   if (num > string.length) {
     throw new Error('cannot shift a number above string length');
   }
@@ -74,8 +76,11 @@ function not(stringA) {
 function binaryAddition(stringA, stringB) {
   const numA = parseInt(stringA, 2);
   const numB = parseInt(stringB, 2);
-  const sum = (numA + numB).toString(2);
+  let sum = (numA + numB).toString(2);
   const length = stringA.length;
+  while (sum.length < stringA.length) {
+    sum = '0' + sum;
+  }
 
   return sum.length === length ? '1' + sum : sum;
 }
