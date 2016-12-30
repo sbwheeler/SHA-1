@@ -1,6 +1,8 @@
 const expect = require('chai').expect;
 const sha1 = require('../index');
 
+//tested SHA1 results with https://www.tools4noobs.com/online_php_functions/sha1/ and http://www.metamorphosite.com/one-way-hash-encryption-sha1-data-software
+
 describe('sha1 hashing function', () => {
   const a = 'testing';
   const b = 'hello world';

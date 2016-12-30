@@ -61,7 +61,7 @@ function sha1(text) {
     return array;
   });
 
-  //large loop where we use bitwise operations on our initial constants
+  //large loop where we use bitwise operations on our initial constants and word chunks and continually reassign them
   for (let i = 0; i < words80.length; i++) {
     //initializing to the constants set at the beginning of the function
     let a = h0;
@@ -69,6 +69,7 @@ function sha1(text) {
     let c = h2;
     let d = h3;
     let e = h4;
+    //loop 80 times, and perform different bitwise operations and initialize a different k constant depending on where in the loop you are
     for (let j = 0; j < 80; j++) {
       let f;
       let k;
@@ -96,6 +97,7 @@ function sha1(text) {
         f = utils.xOR(BxorC, d);
         k = '11001010011000101100000111010110';
       }
+      //this occurs in every one of the loops, regardless what count j is at, and is adding together then reassigning all of the constants, which will then be used again in the next (of 80) iterations through the loop
       const word = words80[i][j];
       const tempA = utils.binaryAddition(utils.leftRotate(a, 5), f);
       const tempB = utils.binaryAddition(tempA, e);
@@ -110,6 +112,7 @@ function sha1(text) {
       a = temp;
     }
 
+    //after going through 80 times, add together your constants and truncate them to a length of 32
     h0 = utils.truncate(utils.binaryAddition(h0, a), 32);
     h1 = utils.truncate(utils.binaryAddition(h1, b), 32);
     h2 = utils.truncate(utils.binaryAddition(h2, c), 32);
