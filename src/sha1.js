@@ -106,7 +106,7 @@ function sha1(text) {
       temp = utils.truncate(temp, 32);
       e = d;
       d = c;
-      c = utils.leftRotate(b, 30); //something with this
+      c = utils.leftRotate(b, 30);
       b = a;
       a = temp;
     }

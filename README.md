@@ -12,6 +12,7 @@ A concise and thoroughly commented implementation of the SHA-1 hashing function 
 ## Resources
 * http://www.movable-type.co.uk/scripts/sha1.html
 * http://www.metamorphosite.com/one-way-hash-encryption-sha1-data-software
+* https://tools.ietf.org/html/rfc3174
 * https://en.wikipedia.org/wiki/SHA-1
 * https://en.wikipedia.org/wiki/Cryptographic_hash_function
 * https://www.sans.org/reading-room/whitepapers/vpns/overview-cryptographic-hash-functions-879
